@@ -43,7 +43,7 @@ public class FileReceiver extends Thread {
 				while (inStream.readInt() == 1) {
 					byte[] receivedBytes = new byte[256];
 					int readBytes = inStream.read(receivedBytes, 0, 256);
-					System.out.println("Receiving: " + readBytes);
+					//System.out.println("Receiving: " + readBytes);
 					
 					if (readBytes < 256) {
 						byte[] temp = receivedBytes;

@@ -72,7 +72,7 @@ public class FileSender extends Thread {
 				}
 
 				for (byte[] bit : encryptedBits) {
-					System.out.println("Sending: " + bit.length);
+					//System.out.println("Sending: " + bit.length);
 					outStream.writeInt(1);
 					outStream.write(bit);
 				}
