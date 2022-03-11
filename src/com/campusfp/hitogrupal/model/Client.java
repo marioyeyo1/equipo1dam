@@ -15,7 +15,7 @@ public class Client {
     public Client(int id, Socket socket, PublicKey pkey) {
         this.id = id;
         this.socket = socket;
-        cif = new Cifrado(pkey);
+        this.cif = new Cifrado(pkey);
         this.fm = new FileManager("./enviar");
     }
 
@@ -29,7 +29,7 @@ public class Client {
             outStream.writeInt(msgBytes.length);
             outStream.write(msgBytes);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return 0;
         }
         return 1;
@@ -45,7 +45,7 @@ public class Client {
             fs.start();
             fs.join();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return 0;
         }
         return 1;

@@ -37,13 +37,9 @@ public class FileReceiver extends Thread {
 				outStream.writeInt(1);
 				String fileName = inStream.readUTF();
 
-				/* byte[] receivedBytes = new byte[256];
-				inStream.read(receivedBytes, 0, 256); */
-
 				while (inStream.readInt() == 1) {
 					byte[] receivedBytes = new byte[256];
 					int readBytes = inStream.read(receivedBytes, 0, 256);
-					//System.out.println("Receiving: " + readBytes);
 					
 					if (readBytes < 256) {
 						byte[] temp = receivedBytes;
@@ -80,10 +76,4 @@ public class FileReceiver extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	//	Getters & Setters
-	
-	
 }

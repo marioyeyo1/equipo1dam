@@ -13,12 +13,14 @@ import com.campusfp.hitogrupal.utils.Colors.EColors;
 
 public class ServerMain {
     private static List<Client> clients;
+    private static List<Client> toRemove;
     private static Scanner sc;
 
     public static void main(String[] args) {
         FileManager fm = new FileManager("./enviar");
         Menu menu = new Menu();
         clients = new ArrayList<Client>();
+        toRemove = new ArrayList<Client>();
         sc = new Scanner(System.in);
 
         ServerRoutine sr = new ServerRoutine(clients);
@@ -92,19 +94,36 @@ public class ServerMain {
 
     public static void notifyClients(String msg) {
         for (Client client : clients) {
-           client.sendMsg(msg); 
+           int res = client.sendMsg(msg);
+		   if (res == 0) {
+			   toRemove.add(client);
+		   }
         }
+		removeClosedClients();
     }
 
     public static void sendFileToClients(String fileName) {
         for (Client client : clients) {
-            client.sendFile(fileName);
+            int res = client.sendFile(fileName);
+			if (res == 0) {
+				toRemove.add(client);
+			}
         }
+		removeClosedClients();
     }
 
     public static void closeConnections() {
         for (Client client : clients) {
             client.sendCloseWarning();
+			toRemove.add(client);
         }
+		removeClosedClients();
     }
+
+	public static void removeClosedClients() {
+		for (Client client : toRemove) {
+			clients.remove(client);
+		}
+		toRemove.clear();
+	}
 }

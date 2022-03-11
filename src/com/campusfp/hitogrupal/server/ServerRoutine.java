@@ -2,8 +2,6 @@ package com.campusfp.hitogrupal.server;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.KeyFactory;
@@ -39,7 +37,6 @@ public class ServerRoutine extends Thread {
                         DataInputStream is = new DataInputStream(socket.getInputStream());
                         byte[] keyBytes = new byte[2048];
                         is.read(keyBytes, 0, 2048);
-                        //is.close();
                         X509EncodedKeySpec ks = new X509EncodedKeySpec(keyBytes);
                         KeyFactory kf = KeyFactory.getInstance("RSA");
                         pbk = kf.generatePublic(ks);
@@ -50,7 +47,7 @@ public class ServerRoutine extends Thread {
                     
                     Client c = new Client(clientId, socket, pbk);
                     clients.add(c);
-                    Colors.printString(EColors.CYAN, "Client number " + clientId + " connected.");
+                    Colors.printlnString(EColors.CYAN, "Client number " + clientId + " connected.");
                     clientId++;
                 }
             } catch (IOException e) {

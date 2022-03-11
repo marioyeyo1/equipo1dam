@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import com.campusfp.hitogrupal.model.Cifrado;
-import com.campusfp.hitogrupal.model.FileManager;
 import com.campusfp.hitogrupal.model.FileReceiver;
 import com.campusfp.hitogrupal.utils.Colors;
 import com.campusfp.hitogrupal.utils.Colors.EColors;
