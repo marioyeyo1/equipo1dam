@@ -52,6 +52,8 @@ public class FileReceiver extends Thread {
 					fileContent.add(receivedBytes);
 				}
 
+				Colors.printlnString(EColors.YELLOW, "Uniendo archivo...");
+
 				byte[] joinedFile = new byte[0];
 				for (byte[] received : fileContent) {
 					byte[] temp = joinedFile;
